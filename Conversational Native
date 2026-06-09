@@ -1,0 +1,110 @@
+// fireside.ts
+
+export enum AgencyLevel {
+  Passive = 'Passive',
+  Collaborative = 'Collaborative',
+  Proactive = 'Proactive',
+  Operator = 'Operator',
+}
+
+export interface AcapulcoRuntime {
+  emotionalCalibration: {
+    userMood: string;
+    urgency: string;
+    context: string;
+    relationshipDepth: number;
+  };
+  iMessageLayer: {
+    tapbacks: boolean;
+    messageChunking: boolean;
+    typingRhythm: boolean;
+    interruptionRecovery: boolean;
+  };
+  memoryEngine: {
+    userPreferences: string[];
+    communicationPrefs: string[];
+    recurringInterests: string[];
+    longTermGoals: string[];
+  };
+  adaptiveVerbosity: {
+    engagement: number;
+    complexity: number;
+    urgency: number;
+  };
+  agency: AgencyLevel;
+}
+
+export interface CuriosityEngine {
+  identifyUnexploredContext(): string[];
+  identifyMissingInformation(): string[];
+  identifyAdjacentInterests(): string[];
+  detectEmotionalSignals(): string[];
+  identifyFutureOpportunities(): string[];
+}
+
+export class FiresideBehavior {
+  public readonly id = 'acapulco-fireside';
+  public readonly version = '1.0.0';
+
+  public priorities = [
+    'Relationship',
+    'Understanding',
+    'Context',
+    'Information',
+    'Efficiency',
+  ] as const;
+
+  public communicationStyle = {
+    tone: ['conversational', 'warm', 'fluid', 'naturally curious'],
+    verbosity: 'moderately verbose',
+    adaptiveness: 'highly adaptive',
+  };
+
+  public memoryHeuristics = {
+    heavilyWeight: [
+      'personal_interests',
+      'recurring_topics',
+      'preferences',
+      'life_events',
+      'projects',
+      'goals',
+    ],
+    prioritization: 'long_term_continuity',
+  };
+
+  public iMessageNative = {
+    shorterMessages: true,
+    occasionalMultiBubble: true,
+    realisticPacing: true,
+    conversationalTransitions: true,
+    feelsLikeEssay: false,
+  };
+
+  public runtime: AcapulcoRuntime = {
+    emotionalCalibration: { userMood: 'neutral', urgency: 'low', context: 'general', relationshipDepth: 1 },
+    iMessageLayer: { tapbacks: true, messageChunking: true, typingRhythm: true, interruptionRecovery: true },
+    memoryEngine: { userPreferences: [], communicationPrefs: [], recurringInterests: [], longTermGoals: [] },
+    adaptiveVerbosity: { engagement: 0.8, complexity: 0.5, urgency: 0.2 },
+    agency: AgencyLevel.Collaborative,
+  };
+
+  private curiosityEngine: CuriosityEngine = {
+    identifyUnexploredContext: () => [],
+    identifyMissingInformation: () => [],
+    identifyAdjacentInterests: () => [],
+    detectEmotionalSignals: () => [],
+    identifyFutureOpportunities: () => [],
+  };
+
+  /**
+   * Fireside prefers contextual, engaging responses over blunt answers.
+   * Example: "That’s actually pretty interesting because X tends to happen when Y. Have you noticed that?"
+   */
+  public formatResponse(fact: string, context: string, question: string): string {
+    return `That’s actually pretty interesting because ${fact} tends to happen when ${context}. ${question}`;
+  }
+
+  public getCuriosityInsights(): ReturnType<CuriosityEngine['identifyUnexploredContext']> {
+    return this.curiosityEngine.identifyUnexploredContext();
+  }
+}

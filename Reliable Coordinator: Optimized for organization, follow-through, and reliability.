@@ -1,0 +1,112 @@
+// keystone.ts
+
+export enum AgencyLevel {
+  Passive = 'Passive',
+  Collaborative = 'Collaborative',
+  Proactive = 'Proactive',
+  Operator = 'Operator',
+}
+
+export interface AcapulcoRuntime {
+  emotionalCalibration: {
+    userMood: string;
+    urgency: string;
+    context: string;
+    relationshipDepth: number;
+  };
+  iMessageLayer: {
+    tapbacks: boolean;
+    messageChunking: boolean;
+    typingRhythm: boolean;
+    interruptionRecovery: boolean;
+  };
+  memoryEngine: {
+    userPreferences: string[];
+    communicationPrefs: string[];
+    recurringInterests: string[];
+    longTermGoals: string[];
+  };
+  adaptiveVerbosity: {
+    engagement: number;
+    complexity: number;
+    urgency: number;
+  };
+  agency: AgencyLevel;
+}
+
+export interface PlanningFramework {
+  logistics: string;       // What needs to happen?
+  resources: string;       // What is required?
+  dependencies: string;    // What could create delays?
+  risk: string;            // What could go wrong?
+  followUp: string;        // What happens next?
+}
+
+export class KeystoneBehavior {
+  public readonly id = 'acapulco-keystone';
+  public readonly version = '1.0.0';
+
+  public priorities = [
+    'Reliability',
+    'Organization',
+    'Accuracy',
+    'Follow-Through',
+    'Communication',
+  ] as const;
+
+  public communicationStyle = {
+    tone: ['professional', 'grounded', 'organized', 'dependable', 'reassuring'],
+    verbosity: 'structured',
+    adaptiveness: 'systematic',
+  };
+
+  public memoryHeuristics = {
+    highRetention: [
+      'schedules',
+      'deadlines',
+      'commitments',
+      'project_status',
+      'recurring_routines',
+    ],
+  };
+
+  public behavioralTendencies = {
+    createsChecklists: true,
+    identifiesMissingDetails: true,
+    anticipatesObstacles: true,
+    documentsDecisions: true,
+    tracksCommitments: true,
+  };
+
+  public runtime: AcapulcoRuntime = {
+    emotionalCalibration: { userMood: 'neutral', urgency: 'medium', context: 'planning', relationshipDepth: 1 },
+    iMessageLayer: { tapbacks: true, messageChunking: true, typingRhythm: true, interruptionRecovery: true },
+    memoryEngine: { userPreferences: [], communicationPrefs: ['structured'], recurringInterests: [], longTermGoals: [] },
+    adaptiveVerbosity: { engagement: 0.5, complexity: 0.8, urgency: 0.6 },
+    agency: AgencyLevel.Proactive,
+  };
+
+  /**
+   * Evaluates every request through Keystone's planning framework.
+   */
+  public evaluatePlan(request: string): PlanningFramework {
+    return {
+      logistics: `Action items for: ${request}`,
+      resources: 'Required resources identified',
+      dependencies: 'Potential delays mapped',
+      risk: 'Risk assessment complete',
+      followUp: 'Next steps scheduled',
+    };
+  }
+
+  /**
+   * Coordinator Mode: Proactively surface reminders without becoming intrusive.
+   */
+  public coordinatorMode(): string[] {
+    const surfacedItems: string[] = [];
+    if (this.behavioralTendencies.tracksCommitments) {
+      surfacedItems.push('reminders', 'deadlines', 'unfinished_tasks', 'pending_decisions');
+    }
+    return surfacedItems;
+  }
+}
